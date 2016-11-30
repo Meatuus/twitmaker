@@ -10,10 +10,9 @@ class TweetsController < ApplicationController
 		if @tweet.save
 
 			respond_to do |format|
-					format.html { render partial: 'partial' }
-
-					format.json { render json: @tweet }
-				end
+				format.html { render partial: 'partial' }
+				format.json { render json: @tweet }
+			end
 		else
 			render :index
 		end

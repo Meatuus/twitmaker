@@ -3,18 +3,18 @@
 $(document).ready(function() {
 
 
-	$('.create_tweet').on('submit', function(eventObject){
+	$('.new_tweet').on('submit', function(eventObject){
 		eventObject.preventDefault();
-		console.log('part 1');
+
 		$.ajax({
 			url: $(this).attr('action'),
-			method: $(this).attr('method'), //why when set to 'post' doesn't this work??
+			method: $(this).attr('method'),
 			data: $(this).serialize(),
-			dataType: 'html'
+			dataType: 'json'
 		}).done(function(responseData) {
 			console.log(responseData);
-			$('.tweets').prepend(responseData);
+			$('.tweets').prepend('<li class="tweet">' + '<p>' + responseData.message + '</p>' +
+			'<time>' + responseData.created_at + '</time>' + '</li>');
 		});
-
 	});
 });
